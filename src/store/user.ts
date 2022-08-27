@@ -1,0 +1,23 @@
+import create from "zustand";
+import * as uuid from "uuid";
+
+export type UserType = {
+  id?: string;
+  name: string;
+  email: string;
+};
+
+type UserState = {
+  users: UserType[];
+  addUser: (user: UserType) => void;
+};
+
+const useUserStore = create<UserState>((set) => ({
+  users: [],
+  addUser: (user: UserType) => {
+    user.id = uuid.v4();
+    set((state) => ({ users: [...state.users, user] }));
+  },
+}));
+
+export { useUserStore };
