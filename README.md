@@ -19,16 +19,13 @@ type UserState = {
   addUser: (user: UserType) => void,
 };
 
-const useUserStore =
-  create <
-  UserState >
-  ((set) => ({
-    users: [],
-    addUser: (user: UserType) => {
-      user.id = uuid.v4();
-      set((state) => ({ users: [...state.users, user] }));
-    },
-  }));
+const useUserStore =create<UserState>((set) => ({
+  users: [],
+  addUser: (user: UserType) => {
+    user.id = uuid.v4();
+    set((state) => ({ users: [...state.users, user] }));
+  },
+}));
 
 export { useUserStore };
 ```
